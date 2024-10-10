@@ -2,7 +2,6 @@ version: "3.8"
 services:
   mysqldb:
     image: mysql:8.0.1
-    platform: linux/arm/v7 # Especifica la plataforma ARM v7
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=coinscontrol
@@ -20,12 +19,9 @@ services:
       - 3005:3005
     networks:
       - mysql-phpmyadmin
-    platform: linux/arm/v7 # Especifica la plataforma para phpMyAdmin
   phpmyadmin:
     depends_on:
       - mysqldb
-    platform: linux/arm/v7 # Especifica la plataforma para phpMyAdmin
-
     image: phpmyadmin:latest
     restart: always
     ports:
