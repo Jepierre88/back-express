@@ -20,9 +20,12 @@ services:
       - 3005:3005
     networks:
       - mysql-phpmyadmin
+    platform: linux/arm/v7 # Especifica la plataforma para phpMyAdmin
   phpmyadmin:
     depends_on:
       - mysqldb
+    platform: linux/arm/v7 # Especifica la plataforma para phpMyAdmin
+
     image: phpmyadmin:latest
     restart: always
     ports:
