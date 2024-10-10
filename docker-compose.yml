@@ -1,6 +1,7 @@
 services:
   mysqldb:
-    image: arm64v8/mysql:5.7 # Imagen específica para ARM
+    image: mysql:5.7 # Imagen oficial de MySQL
+    platform: linux/arm/v8 # Especificar la plataforma ARM
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=coinscontrol
@@ -21,7 +22,7 @@ services:
   phpmyadmin:
     depends_on:
       - mysqldb
-    image: phpmyadmin:latest # Verifica que esta imagen sea compatible
+    image: phpmyadmin:latest # Asegúrate de que esta imagen sea compatible
     restart: always
     ports:
       - 8090:80
