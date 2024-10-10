@@ -1,17 +1,17 @@
 version: "3.8"
 services:
   mysqldb:
-    image: mysql # Usa una versión compatible
+    image: mariadb:latest # Cambié a MariaDB, que es más compatible con ARM
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=coinscontrol
+      - MARIADB_ROOT_PASSWORD=root
+      - MARIADB_DATABASE=coinscontrol
     ports:
       - 3307:3306
     networks:
       - mysql-phpmyadmin
     volumes:
       - db_data:/var/lib/mysql
-    platform: linux/arm64
+    # No es necesario especificar platform aquí, MariaDB debería funcionar en ARM
   app:
     build: .
     depends_on:
@@ -23,13 +23,13 @@ services:
   phpmyadmin:
     depends_on:
       - mysqldb
-    image: phpmyadmin:latest
+    image: phpmyadmin:latest # Asegúrate de que esta versión sea compatible
     restart: always
     ports:
       - 8090:80
     environment:
       - PMA_HOST=mysqldb
-      - MYSQL_ROOT_PASSWORD=root
+      - MARIADB_ROOT_PASSWORD=root
     networks:
       - mysql-phpmyadmin
 
