@@ -11,6 +11,7 @@ services:
       - mysql-phpmyadmin
     volumes:
       - db_data:/var/lib/mysql
+    platform: linux/arm64
   app:
     build: .
     depends_on:
