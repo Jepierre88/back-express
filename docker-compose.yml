@@ -1,7 +1,6 @@
 services:
   mysqldb:
-    image: mysql:5.7 # Imagen oficial de MySQL
-    platform: linux/arm/v8 # Especificar la plataforma ARM
+    image: mysql:8.0 # Imagen oficial de MySQL
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=coinscontrol
