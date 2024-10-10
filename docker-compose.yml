@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   mysqldb:
-    image: mariadb:latest # Cambiado a MariaDB
+    image: mariadb:10.5 # Usa una versión compatible
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=coinscontrol
