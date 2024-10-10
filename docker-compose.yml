@@ -5,7 +5,7 @@ services:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=coinscontrol
     ports:
-      - 3306:3306
+      - 3307:3306
     networks:
       - mysql-phpmyadmin
     volumes:
@@ -21,7 +21,7 @@ services:
   phpmyadmin:
     depends_on:
       - mysqldb
-    image: phpmyadmin:latest # Asegúrate de que esta imagen sea compatible
+    image: phpmyadmin # Asegúrate de que esta imagen sea compatible
     restart: always
     ports:
       - 8090:80
