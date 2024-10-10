@@ -1,0 +1,39 @@
+version: "3.8"
+services:
+  mysqldb:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=coinscontrol
+    ports:
+      - 3307:3306
+    networks:
+      - mysql-phpmyadmin
+    volumes:
+      - db_data:/var/lib/mysql
+  app:
+    build: .
+    depends_on:
+      - mysqldb
+    ports:
+      - 3005:3005
+    networks:
+      - mysql-phpmyadmin
+  phpmyadmin:
+    depends_on:
+      - mysqldb
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8090:80
+    environment:
+      - PMA_HOST=mysqldb
+      - MYSQL_ROOT_PASSWORD=root
+    networks:
+      - mysql-phpmyadmin
+
+networks:
+  mysql-phpmyadmin:
+
+volumes:
+  db_data:
