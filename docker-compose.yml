@@ -33,6 +33,6 @@ services:
 
 networks:
   mysql-phpmyadmin:
-
+    driver: bridge
 volumes:
   db_data:
