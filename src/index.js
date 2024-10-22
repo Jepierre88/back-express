@@ -26,8 +26,3 @@ app.get("/", async (req, res) => {
     res.status(500).send("Error ejecutando la consulta.");
   }
 });
-
-// Iniciar el servidor en el puerto 3005
-app.listen(3005, () => {
-  console.log("Servidor corriendo en el puerto 3005");
-});
