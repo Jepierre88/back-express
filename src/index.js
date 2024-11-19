@@ -1,7 +1,8 @@
 import app from './app.js';
 import pool from './db.js';
+import {print, getPrinters} from "./printer.js"
 
-app.get("/", async (req, res) => {
+app.get("/a", async (req, res) => {
   try {
     // Obtener la hora actual de MySQL
     const [result] = await pool.query("SELECT NOW()");
@@ -26,3 +27,30 @@ app.get("/", async (req, res) => {
     res.status(500).send("Error ejecutando la consulta.");
   }
 });
+
+const sendPrintRequest = async () => {
+  console.log("XD")
+    const informacion = {
+        nombre_impresora: "Nombre de la impresora", // Nombre de la impresora seleccionada
+        operaciones: [
+            { accion: "text", datos: "Hola, esto es una prueba de impresión" },
+            { accion: "cut", datos: "" },
+        ],
+    };
+
+    const result = await print(informacion);
+    console.log("Resultado de impresión:", result ? "Éxito" : "Error");
+};
+
+app.get("/", async (req, res) => {
+  let response
+  await fetch("https://artux-api.new.coins-colombia.com:3000/findUser/1033177930").then(async(data)=> await data.json()).then(resp=> response = resp)
+  // getPrinters()
+  console.log(response)
+  res.send("Hello, World!");
+})
+
+app.post("/web", async (req, res) => {
+  console.log(req.body)
+  res.send("Recibido")
+})
